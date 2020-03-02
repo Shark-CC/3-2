@@ -5,11 +5,14 @@
       placeholder="在搜索框输入名称~"
       v-model="keyWord"
       @keyup.enter="searchUser"
+    
     />
     <button @click="searchUser">搜索</button>
   </div>
 </template>
 <script>
+//  @keyup.enter="searchUser"
+//      输入框绑定回车事件 
 import axios from "axios";
 import PubSub from "pubsub-js";
 import { BASE_URL } from "../config";
