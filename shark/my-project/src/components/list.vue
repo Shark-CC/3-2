@@ -1,7 +1,7 @@
 <template>
   <ul class="row">
     <h2 v-if="isFirst">请输入关键字搜索相关用户</h2>
-    <h2 v-else-if="isLoding">Loding</h2>
+    <h2 v-else-if="isLoding">桥豆麻袋..</h2>
     <h2 v-else-if="error">搜索出错,请联系管理员</h2>
     <Item v-else v-for="(item, index) in users" :key="index" :item="item" />
   </ul>

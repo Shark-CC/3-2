@@ -3,7 +3,7 @@
     <input
       type="text"
       placeholder="在搜索框输入名称~"
-      v-model="keyword"
+      v-model="keyWord"
       @keyup.enter="searchUser"
     />
     <button @click="searchUser">搜索</button>
@@ -26,22 +26,21 @@ export default {
   methods: {
     async searchUser() {
       if (!this.keyWord.trim()) return;
-      PubSub.punlish("searchUser", { isFirst: false, isLoding: true });
+      PubSub.publish("searchUser", { isFirst: false, isLoding: true });
       try {
         const body = await axios({
           baseURL: BASE_URL,
           url: "/search/users",
-          methods: {
-            q: this.keyWord
-          }
+          methods: "get", //get请求的query参数，在axios要写成  params形式
+          params: { q: this.keyWord } //q是规定要传的参数
         });
         console.log(body);
-        PubSub.punlish("searchUser", {
+        PubSub.publish("searchUser", {
           isLoding: false,
           users: body.data.items
         });
       } catch (error) {
-        PubSub.punlish("searchUser", { isLoding: false, error });
+        PubSub.publish("searchUser", { isLoding: false, error });
       }
     }
   }

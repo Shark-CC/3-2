@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <div class="container">
-      <section class="searchA">
-        <h3 class="searchHead">Search Github Users</h3>
+      <section class="jumbotron">
+        <h3 class="jumbotron-heading">Search Github Users</h3>
+        <Search />
       </section>
+      <List />
     </div>
   </div>
 </template>
